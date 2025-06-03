@@ -51,3 +51,21 @@ async  function loadBooks(page = 1) {
     renderBooks(data.books);  // call a function  =>> display at the client
     renderPagination(data.totalPages);
 }
+
+function renderBooks(books) {
+    const container = document.getElementById("bookList"); // element selection
+
+    //clear content first
+    container.innerHTML = "";
+    books.forEach(book => {
+        const div = document.createElement("div");
+        div.className = "book";  //class="book";
+        div.innerHTML =`
+            <strong>${book.title}</ strong> by ${book.author || "Unknown"}<br>
+            <p>${book.price || "N/A"}</p>
+            <button onclick="deleteBook('${book._id}')">Delete</button>
+        `;
+        container.appendChild(div);
+    });
+
+}
