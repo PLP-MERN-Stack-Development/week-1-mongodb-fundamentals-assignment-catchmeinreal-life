@@ -28,3 +28,26 @@ document.getElementById("addBookForm").addEventListener("submit", async (e) => {
     }
 
 });
+
+async  function loadBooks(page = 1) {
+    const search = document.getElementById("searchInput").value; // element
+
+    const url = new URL(API)
+
+    url.searchParams.append("page", page);
+    url.searchParams.append("limit", limit);
+    // "http://localhost:5000/api/books?page=1&limit=5"
+    
+    // search input
+    if (search) url.searchParams.append("search", search); //"http://localhost:5000/api/books?page=1&limit=5&search=eric"
+    // console.log(url);
+
+
+    // api request
+    const res = await fetch(url);
+    const data = await res.json();
+
+    currentPage = data.page;   //what does this mean
+    renderBooks(data.books);  // call a function  =>> display at the client
+    renderPagination(data.totalPages);
+}
