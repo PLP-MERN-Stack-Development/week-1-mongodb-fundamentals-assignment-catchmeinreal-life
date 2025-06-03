@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!--  -->
+    <h1>week1::  My Bookstore</h1>
+    <input type="text" name="" id="searchInput" placeholder="search by title or author..">
+    <button>Search</button>   <!-- onclick="loadBooks()" -->
+
+
+    <div id="bookList"></div>
+
+    <div id="pagination"></div>
+
+    <!-- add a book -->
+    <h2>Add a Book</h2>
+    <form action="" name="addBook" id="addBookForm">
+        <input type="text" name="" id="title" placeholder="Title" required />
+        <input type="text" name="" id="author" placeholder="Author" />
+        <input type="number" name="" id="price" placeholder="Price" />
+
+        <button type="submit">Add Book</button>
+    </form>
+    <br>
+    <hr>
+    <br>
+    <!-- search for a book -->
+     <h2>Search for a Book</h2>
+     <form action="" name="searchBook" id="searchBookForm">
+        <!-- search by Author, By date, By title, By price range -->
+         <input type="text" placeholder="search by Author...">
+
+         <button type="submit">Search </button>
+     </form>
+
+    <script src="app.js"></script>
+    
+</body>
+</html>

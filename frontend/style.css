@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+input {
+    margin: 5px;
+    padding: 5px;
+    /* extra styling */
+    border: 1px solid red;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+#bookList {
+    margin-top: 20px;
+}
+
+.book {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    margin: 5px;
+    /* extra styling */
+    /* border: none; */
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5rem 0.6rem;
+}
