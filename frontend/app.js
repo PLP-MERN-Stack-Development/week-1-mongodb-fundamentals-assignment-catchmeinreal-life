@@ -69,3 +69,30 @@ function renderBooks(books) {
     });
 
 }
+
+
+function renderPagination(totalPages) {
+    const container = document.getElementById("pagination");
+    container.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.onclick = () => loadBooks(i);
+
+        if ( i === currentPage ) btn.style.fontWeight = "bold";
+        container.appendChild(btn);
+    }
+}
+
+async function deleteBook(id) {
+    if (confirm("Delete this book?")) {
+        await fetch(`${API}/${id}`, {
+            method : "DELETE"
+        });
+        loadBooks(currentPage);
+    }
+}
+
+//initial load 
+loadBooks();
