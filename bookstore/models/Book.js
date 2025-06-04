@@ -7,4 +7,4 @@ const BookSchema = new mongoose.Schema({
     inStock : { type : Boolean, default : true},
 }, { timestamps : true });
 
-modules.exports = mongoose.model("Book", BookSchema);
+module.exports = mongoose.model("Book", BookSchema);
