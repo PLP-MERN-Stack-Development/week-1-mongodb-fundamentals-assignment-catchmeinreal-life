@@ -1,8 +1,13 @@
-const API = "http://localhost:5000/api/books"; //link to the backend
+const API = "http://localhost:6446/api/books/"; //link to the backend
 
 let currentPage = 1;
 let limit = 5;
 
+
+/**adding a book from form data
+ * 
+ * then calling the loadBooks() function
+ */
 document.getElementById("addBookForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -12,7 +17,7 @@ document.getElementById("addBookForm").addEventListener("submit", async (e) => {
         price : document.getElementById("price").value,
     }
 
-    // console.log(book);
+    console.log(JSON.stringify(book));
     const res = await fetch(API, {  // making an api call
         method : "POST",
         headers : { "Content-Type" : "application/json"},  //api : token >> sending request to protected routes
@@ -44,7 +49,12 @@ async  function loadBooks(page = 1) {
 
 
     // api request
-    const res = await fetch(url);
+    // const res = await fetch(API, {  // making an api call
+    //     method : "GET",
+    //     headers : { "Content-Type" : "application/json"},  //api : token >> sending request to protected routes
+    //     body : JSON.stringify(book)
+    // });
+    const res = await fetch(url);  //API
     const data = await res.json();
 
     currentPage = data.page;   //what does this mean
