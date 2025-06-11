@@ -67,3 +67,66 @@ db.books.find( {} ).sort({ price : -1 });  // descending
 
 db.books.find({}).skip(1).limit(3);
 
+/**
+ * ### Task 4: Aggregation Pipeline
+*/
+
+// - Create an aggregation pipeline to calculate the average price of books by genre
+db.books.aggregate([
+    {$group: {_id : "$genre", avg_price : {$avg : "$price"}}},
+    {$sort: {avg_price : -1}}
+])
+
+// - Create an aggregation pipeline to find the author with the most books in the collection
+
+
+db.books.aggregate([
+    { $group : {
+        _id: "$author",
+        bookCount: { $sum: 1}
+        }
+    },
+    { $sort: { bookCount : -1}},
+    { $limit: 1}
+])
+
+// - Implement a pipeline that groups books by publication decade and counts them
+
+
+db.books.aggregate([
+    {
+        $project: {
+            decade: {
+                $concat: [
+                    { $substr: ["$published_year", 0, 3] },
+                    "0"
+                ]   
+            }
+        }
+    },
+    {
+        $group: {
+            _id: "$decade",
+            count: { $sum: 1 }
+        }
+    },
+    { $sort: { _id: -1 } }
+]);
+
+/**### Task 5: Indexing
+
+
+
+
+- Use the `explain()` method to demonstrate the performance improvement with your indexes
+ */
+
+
+// - Create an index on the `title` field for faster searches
+db.books.createIndex({ title: 1 });
+
+// - Create a compound index on `author` and `published_year`
+db.books.createIndex({ author: 1, published_year: 1 });
+
+// - Use the `explain()` method to demonstrate the performance improvement with your indexes
+db.books.find({ title: "The Alchemist" }).explain("executionStats");
